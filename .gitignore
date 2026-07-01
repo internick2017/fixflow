@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+build/
+
+# env / secrets
+.env
+.env*.local
+
+# supabase
+supabase/.temp/
+
+# misc
+.DS_Store
+*.log
+dist/
