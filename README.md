@@ -11,10 +11,17 @@ Function**, with the security rules covered by an integration test suite.
 
 ## Live demo
 
-- **App:** _(add your Vercel URL here)_
-- **Read-only demo admin:** `admin@fixflow.test` / `Password123!`
-- **Try intake without logging in:** open `/intake/11111111-1111-1111-1111-111111111111`
+**https://fixflow-jade.vercel.app**
+
+- **Customer view (no login):** click **"Try the demo intake"** on the landing, or open
+  [`/intake/11111111-1111-1111-1111-111111111111`](https://fixflow-jade.vercel.app/intake/11111111-1111-1111-1111-111111111111),
   and submit a request.
+- **Staff logins** (all with password `Password123!`):
+  - `admin@fixflow.test` — sees every ticket, can reassign, and gets the QR admin page.
+  - `tech1@fixflow.test` and `tech2@fixflow.test` — each sees **only** the tickets assigned to them.
+
+Tip: sign in as a técnico, then as the admin, and watch RLS change what's visible. That
+difference is enforced by Postgres, not by the UI.
 
 ## The loop (architecture)
 
@@ -118,4 +125,14 @@ first.
 
 ## Screenshots
 
-_(add screenshots of: intake form, staff dashboard, ticket detail, admin QR page)_
+**Customer intake** (what a scanned QR opens: report a problem, no login):
+
+![Intake form](docs/screenshots/intake.png)
+
+**Staff dashboard** (RLS-filtered ticket list; a técnico only sees their own):
+
+![Staff dashboard](docs/screenshots/dashboard.png)
+
+**Admin: per-location QR codes** to download and print:
+
+![Admin QR codes](docs/screenshots/admin-qr.png)
