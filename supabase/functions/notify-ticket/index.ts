@@ -13,7 +13,7 @@ Deno.serve(async (req) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: "FixFlow <onboarding@resend.dev>",
+      from: "FixFlow <notifications@send.nickgranados.com>",
       to: [to],
       subject: `New ticket: ${ticket.description?.slice(0, 60) ?? "service request"}`,
       html: `<p>New service request received.</p>
