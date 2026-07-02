@@ -38,6 +38,20 @@ for (const u of users) {
   }
 }
 
+// Locations (idempotent). On hosted these are NOT seeded by supabase/seed.sql, because
+// `supabase db push` only applies migrations (not the seed), so seed them here too.
+const LOCATIONS = [
+  { id: "11111111-1111-1111-1111-111111111111", name: "Sucursal Centro" },
+  { id: "22222222-2222-2222-2222-222222222222", name: "Sucursal Norte" },
+  { id: "33333333-3333-3333-3333-333333333333", name: "Sucursal Sur" },
+];
+{
+  const { error } = await admin
+    .from("locations")
+    .upsert(LOCATIONS, { onConflict: "id" });
+  if (error) throw error;
+}
+
 // Demo tickets, assigned across técnicos. Auth users (hence profiles) don't exist
 // when supabase/seed.sql runs, so tickets are seeded here where the ids are known.
 // Idempotent: clear the demo rows by description first, then re-insert.
