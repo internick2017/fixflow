@@ -14,7 +14,9 @@ export function LocationQr({
   const [dataUrl, setDataUrl] = useState<string>("");
 
   useEffect(() => {
-    const base = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+    // Prefer the configured site URL; fall back to the current origin so QR codes
+    // always point to wherever the app is actually served (e.g. the Vercel domain).
+    const base = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
     const target = `${base}/intake/${locationId}`;
     QRCode.toDataURL(target, { width: 240, margin: 1 })
       .then(setDataUrl)
